@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://* 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Floristería Carmina</title>
+</head>
+<body>
+    <header id="header">
+        <img src="img/floresfondo.jpg" alt="Flores de fondo">
+    </header>
+
+    <h1>Floristería Carmina</h1>
+
+    <!-- Aquí se listan los productos -->
+    <div id="listaProductos"></div>
+
+    <!-- Aquí se mostrará el carrito -->
+    <h2>Carrito</h2>
+    <div id="carrito"></div>
+    <p id="total">Total: 0 €</p>
+
+    <!-- Botón para hacer el pedido -->
+    <button id="openWeb">Haz tu pedido</button>
+
+    <!-- Mensaje de carga (opcional) -->
+    <div id="loading" style="display:none;">Loading web...</div>
+
+
+<!--CREAR CARRITO EN OTRA PÁGINA
+
+    <h2>Tu carrito</h2>
+        <div id="listaCarrito"></div>
+            <h3 id="total">0€</h3>
+        <button id="finalizarPedido">Finalizar pedido</button>
+
+-->
+    
+
+
+    <script src="cordova.js"></script>
+   <!--  <script src="js/carrito.js"></script>  --> 
+    <script src="js/index.js"></script>
+</body>
+</html>
