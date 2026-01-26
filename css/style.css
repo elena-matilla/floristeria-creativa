@@ -32,7 +32,6 @@ h1 {
     padding: 10px;
     width: 90%;
     border-radius: 10px;
-
     display: flex;
     align-items: center;
     gap: 10px;
@@ -72,3 +71,12 @@ h1 {
     background: #e6196e;
     color: white;
 }
+
+#finalizarPedido {
+    margin: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #e6dc19;
+    color: rgb(215, 34, 158);
+})
