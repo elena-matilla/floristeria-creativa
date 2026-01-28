@@ -83,7 +83,7 @@ h1 {
     width: 100%;
     height: 110px;
     object-fit: contain;
-    background: #f8f4f1;
+    background: #e7dacf;
     padding: 8px;
     border-radius: 10px;
 }
@@ -100,9 +100,9 @@ h1 {
 }
 
 .producto button {
-    background: #e588c8;
+    background: #efecaf;
     border: none;
-    color: white;
+    color: rgb(227, 133, 10);
     padding: 8px;
     border-radius: 8px;
     width: 100%;
@@ -110,7 +110,7 @@ h1 {
 }
 
 .producto button:hover {
-    background: #d46ab0;
+    background: #e3a7cf;
 }
 
 /*Para que el carrito no se vea feo*/
@@ -131,6 +131,40 @@ h1 {
     cursor: pointer;
 }
 
+.form-pedido {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-pedido input,
+.form-pedido textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+}
+
+.form-pedido textarea {
+    resize: none;
+    height: 60px;
+}
+
+.form-pedido button {
+    background: #736342;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-pedido button:hover {
+    background: #5f5237;
+}
 
 
 
@@ -148,6 +182,6 @@ h1 {
     padding: 10px 20px;
     border-radius: 8px;
     border: none;
-    background: #e6dc19;
-    color: rgb(215, 34, 158);
+    background: #efecaf;
+    color: rgb(227, 133, 10);
 })

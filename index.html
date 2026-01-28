@@ -61,18 +61,28 @@
          <button onclick="addToCart('Salvora', 3.0)"> Añadir al carrito</button>
     </div>
 
-
 </div>
-
-
 
 
 
 <h3>Tu carrito</h3>
 <div id="listaCarrito"></div>
 <h3 id="totalCarrito">0 €</h3>
-<button id="finalizarPedido">Finalizar pedido</button>
 
+
+
+<!--FORMULARIO DE PEDIDOS-->
+
+<h3>Datos de envío</h3>
+
+<form id="formPedido" class="form-pedido">
+    <input type="text" id="nombre" placeholder="Nombre y apellidos" required>
+    <input type="text" id="direccion" placeholder="Dirección de envío" required>
+    <input type="tel" id="telefono" placeholder="Teléfono" required>
+    <textarea id="nota" placeholder="Nota para el pedido (opcional)"></textarea>
+
+    <button type="submit">Solicita el pedido por WhatsApp</button>
+</form>
 
 
         
