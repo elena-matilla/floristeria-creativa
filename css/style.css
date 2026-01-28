@@ -5,63 +5,134 @@
 }
 
 body {
-    background: #a4d1b4;
+    background: #c5af99;
     font-family: Arial, sans-serif;
     text-align: center;
+}
+
+header {
+    position: relative;
 }
 
 header img {
     width: 100%;
     height: 120px;
     object-fit: cover;
+    display: block;
 }
+
+/* Capa de degradado */
+header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(
+        to bottom,
+        rgba(197, 175, 153, 0),
+        #c5af99
+    );
+}
+
 
 h1 {
-    margin: 20px 0;
-    color: #2258b5;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #736342;
+    font-size: 
 }
 
-#listaProductos {
-    width: 100%;
-    padding: 10px;
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 15px;
+
+    max-width: 700px;   /* AJUSTA este valor */
+    margin: 0 auto;     /* centra el grid */
 }
+
+
+@media (max-width: 600px) {
+    .productos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 
 .producto {
     background: white;
-    margin: 10px auto;
+    border-radius: 12px;
     padding: 10px;
-    width: 90%;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .producto img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+    width: 100%;
+    height: 110px;
+    object-fit: contain;
+    background: #f8f4f1;
+    padding: 8px;
+    border-radius: 10px;
 }
 
+
 .producto h3 {
-    margin: 0;
+    margin: 10px 0 5px;
     font-size: 16px;
 }
 
 .producto p {
-    margin: 0;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .producto button {
-    margin-left: auto;
-    padding: 6px 10px;
-    border: none;
-    border-radius: 6px;
     background: #e588c8;
+    border: none;
     color: white;
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
 }
+
+.producto button:hover {
+    background: #d46ab0;
+}
+
+/*Para que el carrito no se vea feo*/
+
+#listaCarrito div {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    margin: 5px auto;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 400px;
+}
+
+#listaCarrito button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
 
 #openWeb {
     margin: 20px;

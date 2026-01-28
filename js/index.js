@@ -1,1 +1,75 @@
-document.addEventListener("deviceready", onDeviceReady, false); let db; let carrito = []; function onDeviceReady() { // Recuperar carrito de localStorage carrito = JSON.parse(localStorage.getItem('carrito')) || []; // Abrir base de datos db = window.sqlitePlugin.openDatabase({ name: 'carmina.db', location: 'default' }); // Crear tablas y productos iniciales crearTablas(function () { insertarProductosIniciales(function () { mostrarProductos(); mostrarCarrito(); }); }); // Botón para hacer pedido document.getElementById("openWeb").addEventListener("click", function () { alert("Aquí irá el pedido 🛒"); }); // Botón finalizar pedido const btnFinalizar = document.getElementById('finalizarPedido'); if (btnFinalizar) { btnFinalizar.addEventListener('click', function () { alert('Pedido enviado'); carrito = []; localStorage.setItem('carrito', JSON.stringify(carrito)); mostrarCarrito(); }); } } /* ---------- BASE DE DATOS ---------- */ function crearTablas(callback) { db.transaction(function (tx) { tx.executeSql( CREATE TABLE IF NOT EXISTS productos ( id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, precio REAL, imagen TEXT ) ); tx.executeSql( CREATE TABLE IF NOT EXISTS carrito ( producto_id INTEGER, cantidad INTEGER ) ); }, function (error) { console.error("Error creando tablas", error); }, callback); } function insertarProductosIniciales(callback) { db.transaction(function (tx) { tx.executeSql('DELETE FROM productos'); // Evitar duplicados tx.executeSql('INSERT INTO productos (nombre, precio, imagen) VALUES (?,?,?)', ['Hortensia', 4, 'img/hortensia.jpg']); tx.executeSql('INSERT INTO productos (nombre, precio, imagen) VALUES (?,?,?)', ['Camelia', 2, 'img/camelia.jpg']); tx.executeSql('INSERT INTO productos (nombre, precio, imagen) VALUES (?,?,?)', ['Buganvilla', 5, 'img/buganvilla.jpg']); }, function (error) { console.error("Error insertando productos", error); }, callback); } /* ---------- MOSTRAR PRODUCTOS ---------- */ function mostrarProductos() { db.transaction(function (tx) { tx.executeSql('SELECT * FROM productos', [], function (tx, results) { let html = ''; for (let i = 0; i < results.rows.length; i++) { const p = results.rows.item(i); html += <div class="producto"> <img src="${p.imagen}"> <div> <h3>${p.nombre}</h3> <p>${p.precio} €</p> </div> <button onclick="añadirAlCarrito(${p.id})">Añadir</button> </div> ; } document.getElementById("listaProductos").innerHTML = html; }); }); } /* ---------- CARRITO ---------- */ function añadirAlCarrito(idProducto) { db.transaction(function (tx) { tx.executeSql('SELECT * FROM productos WHERE id = ?', [idProducto], function (tx, result) { const producto = result.rows.item(0); let existente = carrito.find(p => p.id === producto.id); if (existente) { existente.cantidad += 1; } else { carrito.push({ id: producto.id, nombre: producto.nombre, precio: producto.precio, cantidad: 1 }); } localStorage.setItem('carrito', JSON.stringify(carrito)); mostrarCarrito(); alert('Producto añadido al carrito'); }); }); } function mostrarCarrito() { let html = ''; let totalCarrito = 0; carrito.forEach(p => { html += <div>${p.nombre} - ${p.precio} € (x${p.cantidad})</div>; totalCarrito += p.precio * p.cantidad; }); document.getElementById("carrito").innerHTML = html; const totalElem = document.getElementById("totalResumen"); if (totalElem) totalElem.innerText = 'Total: ' + totalCarrito + ' €'; }
+// ============================
+// CARRITO DE LA FLORISTERÍA
+// ============================
+
+let carrito = [];
+
+// Añadir producto
+function addToCart(nombre, precio) {
+    const productoExistente = carrito.find(item => item.nombre === nombre);
+
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+        carrito.push({
+            nombre: nombre,
+            precio: precio,
+            cantidad: 1
+        });
+    }
+
+    renderCarrito();
+}
+
+// Renderizar carrito
+function renderCarrito() {
+    const listaCarrito = document.getElementById("listaCarrito");
+    const totalCarrito = document.getElementById("totalCarrito");
+
+    if (!listaCarrito || !totalCarrito) return;
+
+    listaCarrito.innerHTML = "";
+    let total = 0;
+
+    carrito.forEach((item, index) => {
+        total += item.precio * item.cantidad;
+
+        const div = document.createElement("div");
+        div.innerHTML = `
+            <span>
+                ${item.nombre} x${item.cantidad}
+            </span>
+            <span>
+                ${(item.precio * item.cantidad).toFixed(2)} €
+                <button onclick="removeFromCart(${index})">❌</button>
+            </span>
+        `;
+        listaCarrito.appendChild(div);
+    });
+
+    totalCarrito.textContent = total.toFixed(2) + " €";
+}
+
+// Eliminar producto
+function removeFromCart(index) {
+    carrito.splice(index, 1);
+    renderCarrito();
+}
+
+// Finalizar pedido (opcional)
+document.addEventListener("DOMContentLoaded", () => {
+    const finalizarBtn = document.getElementById("finalizarPedido");
+
+    if (finalizarBtn) {
+        finalizarBtn.addEventListener("click", () => {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío 🌸");
+                return;
+            }
+
+            alert("Pedido realizado con éxito 💐");
+            carrito = [];
+            renderCarrito();
+        });
+    }
+});

@@ -12,19 +12,73 @@
 </head>
 
 <body>
-    <header id="header"> <img src="img/floresfondo.jpg" alt="Flores de fondo"> </header>
-    <h1>Floristería Carmina</h1> <!-- Aquí se listan los productos -->
-    <div id="listaProductos"></div> <!-- Aquí se mostrará el carrito -->
-    <h2>Carrito</h2>
-    <div id="carrito"></div>
-    <p id="totalResumen">Total: 0 €</p> <!-- Botón para hacer el pedido --> <button id="openWeb">Haz tu pedido</button>
-    <!-- Mensaje de carga (opcional) -->
-    <div id="loading" style="display:none;">Loading web...</div> <!--CREAR CARRITO EN OTRA PÁGINA-->
-    <h3>Tu carrito</h3>
-    <div id="listaCarrito"></div>
-    <h3 id="totalCarrito">0€</h3> <button id="finalizarPedido">Finalizar pedido</button>
-    <script src="cordova.js"></script>
-    <script src="js/index.js"></script>
+    <header id="header">
+         <img src="img/head.png" alt="Flores de fondo"> 
+    </header>
+    <h1>Floristería creativa </h1> 
+
+    <div id="listaProductos" class="productos-grid">
+
+    <div class="producto">
+        <img src="img/flor1.png" alt="Cies">
+        <h3>Cies</h3>
+        <p>3,50 €</p>
+        <button onclick="addToCart('Cies', 3.5)"> Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="img/flor2.png" alt="Ons">
+        <h3>Ons</h3>
+        <p>2,80 €</p>
+         <button onclick="addToCart('Ons', 2.8)"> Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="img/flor3.png" alt="Cortegada">
+        <h3>Cortegada</h3>
+        <p>2,00 €</p>
+         <button onclick="addToCart('Cortegada', 2.0)"> Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="img/flor4.png" alt="Areoso">
+        <h3>Areoso</h3>
+        <p>4,20 €</p>
+         <button onclick="addToCart('Areoso', 4.2)"> Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="img/flor5.png" alt="Sisargas">
+        <h3>Sisargas</h3>
+        <p>7,00 €</p>
+         <button onclick="addToCart('Sisargas', 7.0)"> Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="img/flor6.png" alt="Salvora">
+        <h3>Salvora</h3>
+        <p>3,00 €</p>
+         <button onclick="addToCart('Salvora', 3.0)"> Añadir al carrito</button>
+    </div>
+
+
+</div>
+
+
+
+
+
+<h3>Tu carrito</h3>
+<div id="listaCarrito"></div>
+<h3 id="totalCarrito">0 €</h3>
+<button id="finalizarPedido">Finalizar pedido</button>
+
+
+
+        
+
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
 </body>
 
 </html>
